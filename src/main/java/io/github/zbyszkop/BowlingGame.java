@@ -1,5 +1,4 @@
 package io.github.zbyszkop;
 
-public class BowlingGame
-{
+public class BowlingGame {
 }
