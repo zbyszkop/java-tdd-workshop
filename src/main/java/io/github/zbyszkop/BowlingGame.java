@@ -6,17 +6,23 @@ public class BowlingGame {
 
     private boolean lastFrameWasSpare;
     private boolean lastFrameWasStrike;
+    private boolean secondToLastFrameWasStrike;
     private int firstRoll = -1;
     private int score = 0;
 
-    // TODO: refactor firstRoll == -1 into isFirstRollOfFrame
     public void roll(int pins) {
-        if (firstRoll == -1 && pins == 10) {
+        if (isFirstRollOfFrame() && pins == 10) {
+            if (secondToLastFrameWasStrike) {
+                score += 3 * PIN_NUMBER;
+            }
+            if (lastFrameWasStrike) {
+                secondToLastFrameWasStrike = true;
+            }
             // Special case: Frame ends in one roll
             lastFrameWasStrike = true;
             return;
         }
-        if (firstRoll == -1) {
+        if (isFirstRollOfFrame()) {
             firstRoll = pins;
             if (lastFrameWasSpare) {
                 score += PIN_NUMBER + firstRoll;
@@ -35,6 +41,10 @@ public class BowlingGame {
             }
             firstRoll = -1;
         }
+    }
+
+    private boolean isFirstRollOfFrame() {
+          return firstRoll == -1;
     }
 
     public int getScore() {

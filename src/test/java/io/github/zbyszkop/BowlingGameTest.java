@@ -98,22 +98,34 @@ public class BowlingGameTest {
         assertThat(game.getScore()).isEqualTo(10+7+7+3);
     }
 
+    @Test
     public void shouldCorrectlyScoreThreeConsecutiveStrikesFollowedByNonStrike() {
         BowlingGame game = new BowlingGame();
 
+        // First frame
         game.roll(10);
         assertThat(game.getScore()).isEqualTo(0);
 
+        // Second frame
         game.roll(10);
         assertThat(game.getScore()).isEqualTo(0);
 
+        // Third frame
         game.roll(10);
         assertThat(game.getScore()).isEqualTo(30);
 
+        // Begin fourth frame
         game.roll(1);
         assertThat(game.getScore()).isEqualTo(30+21);
         game.roll(4);
-        assertThat(game.getScore()).isEqualTo(30+21+15);
+        assertThat(game.getScore()).isEqualTo(30+21+15+5);
+        // End   fourth frame
     }
+
+    // @Test
+    // public void shouldCorrectlyScoreElevenStrikes() {
+
+    // }
+
 }
 
