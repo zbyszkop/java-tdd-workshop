@@ -39,4 +39,24 @@ public class BowlingGameTest {
         game.roll(3);
         assertThat(game.getScore()).isEqualTo(10+4+7);
     }
+
+    @Test
+    public void shouldCorrectlyScoreTwoConsecutiveSpares() {
+        BowlingGame game = new BowlingGame();
+
+
+        game.roll(2);
+        game.roll(8);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(3);
+        assertThat(game.getScore()).isEqualTo(13);
+        game.roll(7);
+        assertThat(game.getScore()).isEqualTo(13);
+
+        game.roll(5);
+        assertThat(game.getScore()).isEqualTo(13+15);
+        game.roll(4);
+        assertThat(game.getScore()).isEqualTo(13+15+9);
+    }
 }
