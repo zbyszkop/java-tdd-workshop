@@ -59,4 +59,15 @@ public class BowlingGameTest {
         game.roll(4);
         assertThat(game.getScore()).isEqualTo(13+15+9);
     }
+
+    @Test
+    public void shouldCorrectlyScoreFullSpareGame() {
+        BowlingGame game = new BowlingGame();
+
+        for (int i = 0; i < 21; i++) {
+            game.roll(5);
+        }
+        assertThat(game.getScore()).isEqualTo(150);
+    }
 }
+
