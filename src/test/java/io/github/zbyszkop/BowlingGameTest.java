@@ -1,7 +1,5 @@
 package io.github.zbyszkop;
 
-
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
@@ -26,5 +24,19 @@ public class BowlingGameTest {
             game.roll(5);
         }
         assertThat(game.getScore()).isEqualTo(80);
+    }
+
+    @Test
+    public void shouldCorrectlyScoreASpare() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(2);
+        game.roll(8);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(4);
+        assertThat(game.getScore()).isEqualTo(10+4);
+        game.roll(3);
+        assertThat(game.getScore()).isEqualTo(10+4+7);
     }
 }
