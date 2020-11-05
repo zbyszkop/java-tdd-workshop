@@ -69,5 +69,51 @@ public class BowlingGameTest {
         }
         assertThat(game.getScore()).isEqualTo(150);
     }
+
+    @Test
+    public void shouldCorrectlyScoreSingleStrike() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(10);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(2);
+        game.roll(5);
+        assertThat(game.getScore()).isEqualTo(10+7+7);
+    }
+
+    @Test
+    public void shouldCorrectlyScoreSingleStrikeFollowedByTwoNonStrikes() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(10);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(2);
+        game.roll(5);
+        assertThat(game.getScore()).isEqualTo(10+7+7);
+
+        game.roll(1);
+        game.roll(2);
+        assertThat(game.getScore()).isEqualTo(10+7+7+3);
+    }
+
+    public void shouldCorrectlyScoreThreeConsecutiveStrikesFollowedByNonStrike() {
+        BowlingGame game = new BowlingGame();
+
+        game.roll(10);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(10);
+        assertThat(game.getScore()).isEqualTo(0);
+
+        game.roll(10);
+        assertThat(game.getScore()).isEqualTo(30);
+
+        game.roll(1);
+        assertThat(game.getScore()).isEqualTo(30+21);
+        game.roll(4);
+        assertThat(game.getScore()).isEqualTo(30+21+15);
+    }
 }
 
